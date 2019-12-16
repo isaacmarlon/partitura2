@@ -2,7 +2,7 @@
 
     class PartiturasDao {
 
-        const DIR_MSC = "./Músicas";
+        const DIR_MSC = './Músicas';
         
         static function getMusicas() {
 
@@ -32,14 +32,22 @@
 
             $naipesResult = array();
 
+            echo $dirNaipes;
+
             if (is_dir($dirNaipes)) {
 
                 $naipes = scandir($dirNaipes);
 
                 foreach ($naipes as $naipe) {
-                    if (strlen($naipe) > 2) { // DEVIDO AOS . e .. DO LINUX
-                        array_push($naipesResult, $naipe);
+                    $naipeSplit = explode($musica, $naipe);
+
+                    if (sizeof($naipeSplit) > 1) {
+                        if (strlen($naipeSplit[1]) > 2) { // DEVIDO AOS . e .. DO LINUX
+                            $realNaipes = explode(".pdf", $naipeSplit[1]);
+                            array_push($naipesResult, $realNaipes[0]);
+                        }    
                     }
+                    
                 }
             } else {
                 echo 'Erro 2: Diretório não encontrado.';
@@ -50,7 +58,7 @@
     
         static function getPartituraNaipe($musica, $naipeBuscar) {
 
-            $dirPartituras = PartiturasDao::DIR_MSC . "/" . $musica . "/" . $naipeBuscar;
+            $dirPartituras = PartiturasDao::DIR_MSC . '/' . $musica;
 
             $partituraResult = array();
 
@@ -59,8 +67,13 @@
                 $partituras = scandir($dirPartituras);
 
                 foreach ($partituras as $part) {
-                    if (strlen($part) > 2) { // DEVIDO AOS . e .. DO LINUX
-                        array_push($partituraResult, $part);
+
+                    $partSplited = explode($musica, $part);
+
+                    if (sizeof($partSplited) > 1) {
+                        if (strpos($partSplited[1], $naipeBuscar) !== false) {
+                            array_push($partituraResult, $part);
+                        }
                     }
                 }
             } else {

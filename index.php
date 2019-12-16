@@ -10,9 +10,9 @@
         <main>
             <?php 
                 include("php/partiturasDao.php");
-                /*print_r(PartiturasDao::getMusicas());
-                print_r(PartiturasDao::getNaipes("Shalow"));
-                print_r(PartiturasDao::getPartituraNaipe("Shalow","Flauta"));*/
+                //print_r(PartiturasDao::getMusicas());
+                //print_r(PartiturasDao::getNaipes("Shalow"));
+                //print_r(PartiturasDao::getPartituraNaipe("Shalow","Flauta"));
             
                 echo "<h1>Músicas</h1>";
                 echo "<select id='mscSelected'>";

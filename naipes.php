@@ -10,9 +10,9 @@
         <main>
         <?php 
                 include("php/partiturasDao.php");
-                /*print_r(PartiturasDao::getMusicas());
-                print_r(PartiturasDao::getNaipes("Shalow"));
-                print_r(PartiturasDao::getPartituraNaipe("Shalow","Flauta"));*/
+                //print_r(PartiturasDao::getMusicas());
+                //print_r(PartiturasDao::getNaipes("Siboney - ERNESTO LECUONA -"));
+                //print_r(PartiturasDao::getPartituraNaipe("Shalow","Flauta"));
 
                 $msc = $_GET['msc'];
 
@@ -27,7 +27,7 @@
                 echo "</select>";
             ?>
 
-            <input type="button" value="Partituras" onclick="goPartituras();"/>
+            <input type="button" value="Imprimir" onclick="goPartituras();"/>
         </main>    
 
         <script>

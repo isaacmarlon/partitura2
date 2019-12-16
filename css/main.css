@@ -1,0 +1,49 @@
+* 
+{
+    padding: 0;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 60px;
+}
+
+body
+{
+    background-color: green;
+    padding: 100px;
+}
+
+main 
+{
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .3);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+main h1 
+{
+    font-size: 2em;
+    background-color: #fff;
+    padding: 20px;
+}
+
+main select
+{
+    background-color: #fff;
+    width: 60%;
+    border-radius: 10px;
+    padding: 6px;
+    margin: 30px;
+}
+
+main input
+{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 6px;
+    margin: 30px;
+}

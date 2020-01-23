@@ -7,5 +7,5 @@
     
     echo "<pre>$output</pre>";
 
-    header('Location: index.php');
+    // header('Location: index.php');
 ?>

@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>Partitura | Naipes</title>
+        <title>Banda | Partituras</title>
         <meta name="viewport" content="width=device-width;initial-scale=1">
         <meta charset="UTF8">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-    <body>
+    <body>   
+        <?php include("php/header.php"); ?>
         <main>
-        <?php 
-                include("php/partiturasDao.php");
-                //print_r(PartiturasDao::getMusicas());
-                //print_r(PartiturasDao::getNaipes("Siboney - ERNESTO LECUONA -"));
-                //print_r(PartiturasDao::getPartituraNaipe("Shalow","Flauta"));
+            <h1>Naipes</h1>
+            <form id="naipesForm" action="imprimir.php" method="POST">
+                <select name="naipe">
+                    <?php 
+                        include("php/musicasIO.php");
 
-                $msc = $_GET['msc'];
+                        $msc = $_POST['msc'];
+                        
+                        foreach(MusicasIO::getNaipes($msc) as $naipe) {
+                            echo "<option>".$naipe."</option>";
+                        }
 
-                echo "<input style='display:none' id='msc' type='text' value='".$msc."'>";
-                echo "<h1>Naipes</h1>";
-                echo "<select id='naipeSelected'>";
-                
-                foreach(PartiturasDao::getNaipes($msc) as $naipe) {
-                    echo "<option>".$naipe."</option>";
-                }
-
-                echo "</select>";
-            ?>
-
-            <input type="button" value="Imprimir" onclick="goPartituras();"/>
+                    ?>
+                </select>
+                <input type="button" value="Imprimir" onclick="goImprimir();">
+            </form>
         </main>    
-
         <script>
-            function goPartituras() {
-                musica = document.getElementById("msc").value;
-                naipe = document.getElementById("naipeSelected").value;
-                window.location.href='partituras.php?msc=' + musica + "&naipe=" + naipe;
+            function goImprimir() {
+                document.getElementById("naipesForm").submit();
             }
         </script>
     </body>

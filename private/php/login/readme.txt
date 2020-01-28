@@ -1,0 +1,1 @@
+Esse diretório deve ser privado de acesso para os clients.

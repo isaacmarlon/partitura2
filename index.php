@@ -1,27 +1,37 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <title>Banda | Login</title>
-        <meta name="viewport" content="width=device-width;initial-scale=1">
-        <meta charset="UTF8">
-    </head>
-    <body>
+<?php include("private/php/verifySession.php");?>
+<?php include("private/php/includes/head.php")?>
+<?php include("private/php/includes/header.php")?>
         <main>
-            <h1>Login</h1>
-            <form id="loginForm" action="php/autenticate.php" method="POST">
-                <div>
-                    <input type="text" name="user" placeholder="Usuário" required/>
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="Senha" required/>
-                </div>
-                <input type="submit" value="Login">
+            <h1>Músicas</h1>
+            <form id="mscForm" action="private/php/naipes.php" method="POST">
+                
+                    <?php 
+                        include("private/php/musicasIO.php");
+
+                        echo "<select name='msc'>";
+
+                        foreach(MusicasIO::getMusicas() as $musica) {
+                            echo "<option>".$musica."</option>";
+                        }
+
+                        echo "</select>";
+                    ?>
+                <input type="button" value="Naipes" onclick="goNaipes();"/>
             </form>
-        </main>
+            <a href="private/php/logout.php">Sair</a>
+            <?php
+                if (($_GET["l"] == 1)) {
+                    echo "<br/> Sua partitura está sendo impressa, aguarde.";
+                }
+            ?>
+        </main>    
+        <script>
+            function goNaipes() {
+                document.getElementById("mscForm").submit();
+            }
+        </script>
     </body>
 </html>
-
-
 
 
 

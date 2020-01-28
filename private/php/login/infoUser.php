@@ -1,12 +1,10 @@
-<?php
+<?php 
     include("ath-connection.php");
 
     session_start();
 
-    $logged = false;
-
-    if ($stmt = $mysqli->prepare('SELECT nome FROM usuarios WHERE nome = ? AND senha = md5(?)')) {
-        $stmt->bind_param('ss', $_POST['user'], $_POST['password']);
+    if ($stmt = $mysqli->prepare('SELECT instrumento FROM usuarios WHERE nome = ?')) {
+        $stmt->bind_param('s', $_SESSION['nome']);
         $stmt->execute();
         $stmt->store_result();
         
@@ -16,9 +14,5 @@
         }
 
         $stmt->close();
-    }
-    
-    if ($logged) {
-        header("Location: ../musicas.php");     
     }
 ?>

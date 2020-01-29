@@ -1,8 +1,8 @@
-<?php include("private/php/verifySession.php"); ?>
-<?php include("private/php/includes/head.php");?>
+<?php include("links/verifySession.php"); ?>
+<?php include("links/head.php");?>
         <main>
             <h1>Login</h1>
-            <form id="loginForm" action="private/php/login/logar.php" method="POST">
+            <form id="loginForm" action="links/logar.php" method="POST">
                 <div>
                     <input type="text" name="user" placeholder="Usuário" required/>
                 </div>

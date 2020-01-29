@@ -1,12 +1,12 @@
-<?php include("private/php/verifySession.php");?>
-<?php include("private/php/includes/head.php")?>
-<?php include("private/php/includes/header.php")?>
+<?php include("links/verifySession.php");?>
+<?php include("links/head.php")?>
+<?php include("links/header.php")?>
         <main>
             <h1>Músicas</h1>
-            <form id="mscForm" action="private/php/naipes.php" method="POST">
+            <form id="mscForm" action="naipes.php" method="POST">
                 
                     <?php 
-                        include("private/php/musicasIO.php");
+                        include("links/musicasIO.php");
 
                         echo "<select name='msc'>";
 
@@ -18,7 +18,7 @@
                     ?>
                 <input type="button" value="Naipes" onclick="goNaipes();"/>
             </form>
-            <a href="private/php/logout.php">Sair</a>
+            <a href="links/logout.php">Sair</a>
             <?php
                 if (($_GET["l"] == 1)) {
                     echo "<br/> Sua partitura está sendo impressa, aguarde.";

@@ -1,1 +1,0 @@
-../private/php/dev/statusImpressora.php

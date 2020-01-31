@@ -1,1 +1,0 @@
-../private/php/login/verifySession.php

@@ -1,45 +1,39 @@
 <?php
     session_start();
 
-    include_once("conexao.php");
-
-    $logou = false;
+    include_once("../conexao/conexao.php");
 
     $user = $_POST["user"];
     $password = $_POST["password"];
+    $logou = false;
     
-    if ($stmt = $mysqli->prepare('SELECT id, nivel, usuario, senha FROM usuarios WHERE usuario = ? LIMIT 1')) {
+    $sql = 'SELECT id, nivel, usuario, senha FROM usuarios WHERE usuario = ? LIMIT 1';
+
+    if ($stmt = $mysqli->prepare($sql)) {
+
         $stmt->bind_param('s', $user);
         $stmt->execute();
         $stmt->store_result();
         
+        // achou dados
         if ($stmt->num_rows > 0) {
 
+            // seta os resultados nessas variáveis
             $stmt->bind_result($id, $nivel, $nome, $senha);
             $stmt->fetch();
 
+            // vai verificar se a senha encriptada bate com os dados
             if (password_verify($password, $senha)) {
+
+                // está logado
+                $logou = true;
                 $_SESSION["id"] = $id;
                 $_SESSION["nivel"] = $nivel;
                 $_SESSION["nome"] = $nome;
-                $logou = true;
 
-                if ($stmt = $mysqli->prepare('CALL verInstrumentos(?)')) {
-                    $stmt->bind_param('s', $id);
-                    $stmt->execute();
-                    $stmt->store_result();
-
-                    $stmt->bind_result($instrumento);
-
-                    $instrumentos = array();
-
-                    while($stmt->fetch()) {
-                        array_push($instrumentos, $instrumento);    
-                    }
-
-                    $_SESSION["instrumentos"] = $instrumentos;
-                    print_r($_SESSION["instrumentos"]);
-                }
+                // vai buscar informações sobre o músico
+                include_once("infoUser.php");
+                
             }
             
         }
@@ -51,6 +45,7 @@
         header("Location: ../../../index.php");
         exit;  
     } else {
+        $_SESSION['popup'] = 1;
         header("Location: ../../../login.php?l=1"); 
         exit;
     }

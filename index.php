@@ -2,9 +2,11 @@
 <?php include("links/head.php")?>
 <?php include("links/header.php")?>
         <main>
-            <h1>Músicas</h1>
-            <form id="mscForm" action="naipes.php" method="POST">
-                
+            <form id="mscForm" action="links/setMusic.php" method="POST">
+                <div>
+                    <h1>Músicas</h1>
+                </div>
+                <div>
                     <?php 
                         include("links/musicasIO.php");
 
@@ -16,17 +18,32 @@
 
                         echo "</select>";
                     ?>
-                <input type="button" value="Naipes" onclick="goNaipes();"/>
+                </div>
+                <div>
+                    <input type="button" value="Naipes" onclick="goPartituras();"/>
+                </div>
             </form>
-            <a href="links/logout.php">Sair</a>
             <?php
-                if (($_GET["l"] == 1)) {
-                    echo "<br/> Sua partitura está sendo impressa, aguarde.";
+                session_start();
+
+                if ($_SESSION['popup'] == 1) {
+
+                    if (($_GET["l"] == 1)) {
+                        echo "<div id='impressaoOk'> Sua partitura está sendo impressa, aguarde.</div>";
+                    }
+
+                    if (($_GET["i"] == 1)) {
+                        echo "<div id='impressoraOn'>Impressora ativada.</div>";
+                    } else if (($_GET["i"] == 2)) {
+                        echo "<div id='impressoraOff'>Impressora desativada.</div>";
+                    }
+                    $_SESSION['popup'] = 0; // evita repetir o mesmo popup ao atualizar a página
                 }
+
             ?>
         </main>    
         <script>
-            function goNaipes() {
+            function goPartituras() {
                 document.getElementById("mscForm").submit();
             }
         </script>

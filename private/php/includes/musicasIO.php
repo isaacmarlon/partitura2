@@ -1,7 +1,7 @@
 <?php
     class MusicasIO {
 
-        const DIR_MSC = '/home/isaac/Músicas'; // especifica diretório onde as músicas estão disponíveis
+        const DIR_MSC = '/mnt/sf_Musicas'; // especifica diretório onde as músicas estão disponíveis
         
         private static function isMusica($file) {
             // esse realmente deve ser o critério de diferenciação?

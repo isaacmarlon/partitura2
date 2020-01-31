@@ -1,26 +1,31 @@
-<?php include("links/verifySession.php"); ?>
-<?php include("links/head.php");?>
-        <main>
-            <h1>Login</h1>
-            <form id="loginForm" action="links/logar.php" method="POST">
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Banda | Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-content, initial-scale=1.0">
+        <link rel="stylesheet" href="private/css/login.css">
+    </head>
+    <body>
+        <section>
+            <form class="form-normal" action="links/logar.php" method="POST">
                 <div>
-                    <input type="text" name="user" placeholder="Usuário" required/>
+                    <input name="user" type="user" placeholder="Usuário">
                 </div>
                 <div>
-                    <input type="password" name="password" placeholder="Senha" required/>
+                    <input name="password" type="password" placeholder="Senha">
                 </div>
-                <input type="submit" value="Login">
+                <div>
+                    <input type="submit" value="Entrar">
+                </div>
             </form>
             <?php
                 if (($_GET["l"] == 1)) {
-                    echo "Usuário ou senha incorretos, tente novamente.";
+                    echo "<div id='popup-nologin'>";
+                    echo    "<p>Login incorreto.</p>";
+                    echo "</div>";
                 }
             ?>
-        </main>
+        </section>
     </body>
 </html>
-
-
-
-
-

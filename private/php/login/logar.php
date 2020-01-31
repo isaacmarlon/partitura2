@@ -1,14 +1,14 @@
 <?php
     session_start();
 
-    include("conexao.php");
+    include_once("conexao.php");
 
     $logou = false;
 
     $user = $_POST["user"];
     $password = $_POST["password"];
     
-    if ($stmt = $mysqli->prepare('SELECT id, nivel, nome, senha FROM usuarios WHERE usuario = ? LIMIT 1')) {
+    if ($stmt = $mysqli->prepare('SELECT id, nivel, usuario, senha FROM usuarios WHERE usuario = ? LIMIT 1')) {
         $stmt->bind_param('s', $user);
         $stmt->execute();
         $stmt->store_result();

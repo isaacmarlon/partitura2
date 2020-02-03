@@ -1,0 +1,28 @@
+/* OPÇÕES DE DESATIVAR E ATIVAR IMPRESSORA */
+
+#impressoraForm {
+    box-shadow: 0 0 10px #000;
+    color: #000;
+    position: absolute;
+    bottom: -180px;
+    right: 50px;
+}
+
+#impressoraForm input {
+    background-color: #33a52f;
+    color: #fff;
+    padding: 2px 4px;
+    width: 100px;
+}
+#impressoraForm input[value="Desativar"] {
+    background-color: #ff7167;
+}
+
+/* UTILIZADO PARA JS MUDAR ESTADO DO FORM */
+
+.impressoraForm1 {
+    display: block;
+}
+.impressoraForm0 {
+    display: none;
+}

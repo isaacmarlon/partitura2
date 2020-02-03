@@ -1,0 +1,66 @@
+
+header {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #fff;
+}
+
+header > div {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+header div#userInfo,
+header div#userOpcoes
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    align-items: center;
+}
+
+header div#userInfo > *,
+header div#userOpcoes > * {
+    margin-right: 20px;
+}
+
+header div#userInfo h2 {
+    font-size: 24px;
+    background-color: #1e1e1e;
+    padding: 0 8px;
+    border-radius: 10px;
+}
+
+header div#userInfo div#userDetails,
+header div#userOpcoes {
+    display: flex;
+    align-items: center;
+}
+
+header div#userInfo div#userDetails > *,
+header div#userOpcoes a
+{
+    margin-right: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #000;
+    padding: 4px 10px;
+}
+
+header div#userOpcoes a {
+    text-decoration: none;
+    outline-color: #000;
+}
+
+header div#userInfo div#userDetails .devTag {
+    background-color: rgb(0, 247, 255);
+    font-weight: bold;
+}
+
+header div#userInfo div#userDetails .adminTag {
+    background-color: rgb(255, 230, 0);
+    font-weight: bold;
+}

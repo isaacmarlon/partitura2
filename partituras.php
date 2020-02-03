@@ -1,17 +1,18 @@
 <?php 
-    include("php/partiturasDao.php");
-    //print_r(PartiturasDao::getMusicas());
-    //print_r(PartiturasDao::getNaipes("Shalow"));
-    //print_r(PartiturasDao::getPartituraNaipe("Siboney - ERNESTO LECUONA -","Flute"));
-
-    $musica = $_GET['msc'];
-    $naipe = $_GET['naipe'];
-
-    $partitura = PartiturasDao::getPartituraNaipe($musica, $naipe);
-    $partitura = strval($partitura[0]);
-
-    $caminho = getcwd() . '/"Músicas"/"' . $musica .'"/"'. $partitura . '"';
-    header('Location: imprimir.php?caminho=' . $caminho);
-
+    /* caminho private definido para impedir acesso de algumas páginas do servidor */
+    define("URL_ARQUIVOS","private/php");
+    require_once URL_ARQUIVOS. "/login/verifySession.php";
+    require_once URL_ARQUIVOS. "/contents/head.php";
+    require_once URL_ARQUIVOS. "/contents/header.php";
 ?>
+<body>
+<?php 
+    require_once URL_ARQUIVOS. "/contents/partituraForm.php";
+    require_once URL_ARQUIVOS. "/contents/popUps.php";
+    require_once URL_ARQUIVOS. "/contents/rodape.php"; 
+?>
+
+
+
+
 

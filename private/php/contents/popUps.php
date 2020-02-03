@@ -1,20 +1,40 @@
 <div id="popUps">
 <?php
-    session_start();
+    //REAL LOCATION: login.php
 
+    session_start(); // resume session do client
+
+    /*  
+        esse atributo popup é utilizado para não repetir o evento sem necessidade ao atualizar
+        a página 
+
+        @isaacmsl
+    */
     if ($_SESSION['popup'] == 1) {
 
-        if (($_GET["l"] == 1)) {
-            echo "<div id='noService'>Serviço de impressão indisponível no momento.</div>";
-        } else if (($_GET["l"] == 2)) {
-            echo "<div id='impressaoOk'> Sua partitura está sendo impressa, aguarde.</div>";
-        } else if (($_GET["i"] == 1)) {
-            echo "<div id='impressoraOn'>Impressora ativada.</div>";
-        } else if (($_GET["i"] == 2)) {
-            echo "<div id='impressoraOff'>Impressora desativada.</div>";
+
+        switch($_GET["l"]) {
+            case 1:
+                echo "<div class='status0'>Serviço de impressão indisponível no momento.</div>";
+                break;
+            case 2:
+                echo "<div class='status1'> Sua partitura está sendo impressa, aguarde.</div>";
+                break;
+            case 3:
+                echo "<div class='status0'><p>Login incorreto.</p></div>";
+                break;
         }
         
-        $_SESSION['popup'] = 0; // evita repetir o mesmo popup ao atualizar a página
+        switch ($_GET["i"]) {
+            case 1:
+                echo "<div class='status1'>Impressora ativada.</div>";
+                break;
+            case 2:
+                echo "<div class='status0'>Impressora desativada.</div>";
+                break;
+        }
+        
+        $_SESSION['popup'] = 0;  // evita repetir o mesmo popup ao atualizar a página
     }
 
 ?>

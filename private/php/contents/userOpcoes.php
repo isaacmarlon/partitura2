@@ -1,6 +1,7 @@
 <div id="userOpcoes">
     <div>
         <?php
+            // resume session do client
             session_start();
             $nivel = $_SESSION['nivel'];
             if ($nivel != 0) {
@@ -13,15 +14,17 @@
     </div>
 </div>
 <?php
+    
+    // resume session do client
     session_start();
-    $nivel = $_SESSION['nivel'];
+    $nivel = $_SESSION['nivel']; // REDUNDANTE COM O SCRIPT ACIMA!!!
 
     if ($nivel != 0) {
 
-        /* utilizado para que o statusImpressora volte para a página atual */
-        $_SESSION['pagAtual'] = basename($_SERVER['PHP_SELF'], '.php');
+        // utilizado para que o statusImpressora volte para a página atual
+        $_SESSION['pagAtual'] = basename($_SERVER['PHP_SELF'], '.php');?>
 
-        echo "
+            <!-- SÓ É EXIBIDO SE A CONDIÇÃO DO IF DO SCRIPT PHP ATUAL FOR TRUE -->
             <form id='impressoraForm' class='impressoraForm0' action='private/php/dev/statusImpressora.php'method='POST'>
                 <div>
                     <h2>Impressora</h2>
@@ -33,6 +36,4 @@
                     <input name='status' type='submit' value='Desativar'>
                 </div>
             </form>
-        ";
-    }
-?>
+    <?php } // FECHA IF?>

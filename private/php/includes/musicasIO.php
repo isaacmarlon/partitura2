@@ -1,6 +1,15 @@
 <?php
+    /*
+        ATENÇÃO: ESSE SCRIPT PHP DEVE SER RESTRITO
+        
+        MOTIVO: ACESSO AO SHELL DO SERVIDOR
+
+        @isaacmsl
+    */
+
     class MusicasIO {
 
+        // mnt --> pasta compartilhada para a vm e mounted
         const DIR_MSC = '/mnt/sf_Musicas'; // especifica diretório onde as músicas estão disponíveis
         
         private static function isMusica($file) {
@@ -12,7 +21,7 @@
             $musicasArray = array();
 
             $files = scandir(MusicasIO::DIR_MSC);
-
+            
             foreach ($files as $file) {
                 if (MusicasIO::isMusica($file)) {
                     array_push($musicasArray, $file);

@@ -1,7 +1,8 @@
-<main>
+<section>
     <form id="partForm" action="private/php/imprimir.php" method="POST">
         <div>
             <?php 
+                // resume session do client
                 session_start();
                 echo "<p><i>".$_SESSION['msc']."</i></p>";
             ?>
@@ -9,18 +10,21 @@
         <div>
             <h1>Partituras</h1>
         </div>
-        <?php 
-            session_start();
-            include("private/php/includes/musicasIO.php");
+        <?php
+            define("URL_ARQUIVOS","private/php");
+            require_once URL_ARQUIVOS. "/includes/musicasIO.php";
 
+            // utilizado para imprimir.php
             $msc = $_SESSION['msc'];
 
             $usuarioInstrumentos = $_SESSION['instrumentos'];
 
+            // pega todos os naipes disponíveis para a msc
             $naipesResult = MusicasIO::getNaipes($msc);
-
-            echo "<div>";
-                echo "<select name='partitura'>";
+        ?>
+        <div>
+            <select name="partitura">
+            <?php
                 foreach($naipesResult as $naipe) {
                     foreach($usuarioInstrumentos as $instrumento) {
                         if ((strpos($naipe[1], $instrumento) == 1) && (strcmp($instrumento, "Todos") == -1)) {
@@ -31,28 +35,29 @@
                         } 
                     }
                 }
-                echo "</select>";
-            echo "</div>";
-        
-            echo "<div>";
+            ?>
+            </select>
+        </div>
+        <div>
+        <?php
             switch($_SESSION["nivel"]) {
                 case -1:
                 case 1:
                     echo "<h1 id='qntInfo' title='Você pode imprimir até 6 partituras por vez'>Quantidade</h1>";
                     echo "</div>";
                     echo "<div>";
-                    echo "<select name='qnt'>";
-                    for ($i=1; $i<=6; $i++) {
-                        echo "<option>$i</option>";
-                    }
-                    echo "</select>";
+                        echo "<select name='qnt'>";
+                        for ($i=1; $i<=6; $i++) {
+                            echo "<option>$i</option>";
+                        }
+                        echo "</select>";
                     echo "</div>";
                     break;      
                 case 0:
                     echo "<p><i>Você está limitado à uma impressão por música</i></p>";
                     break;
             }
-            echo "</div>"
+        echo "</div>"
         ?>
         <div>
             <input type="button" value="Imprimir" onclick="goImprimir();">
@@ -61,7 +66,7 @@
             <input id="btnVoltar" type="button" value="Voltar" onclick="voltar();">
         </div>
     </form>
-</main>    
+</section>    
 <script>
     function goImprimir() {
         document.getElementById("partForm").submit();

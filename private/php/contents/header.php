@@ -1,5 +1,9 @@
 <header>
-    <?php include('userInfo.php');?>
-    <?php include('userOpcoes.php');?>
-    <script src="private/scripts/displayOpcoes.js"></script>
+    <?php 
+        require_once "userInfo.php";
+        require_once "userOpcoes.php";
+
+        define("URL_SCRIPTS","private/scripts");
+        echo "<script src='".URL_SCRIPTS."/displayOpcoes.js'></script>";
+    ?>
 </header>

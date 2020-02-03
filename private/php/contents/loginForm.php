@@ -1,27 +1,22 @@
 <section>
-    <form class="form-normal" action="private/php/login/logar.php" method="POST">
+    <?php
+        define("URL_ARQUIVOS","private/php");
+        echo "<form action='".URL_ARQUIVOS."/login/logar.php' method='POST'>";
+    ?>    
         <div>
-            <input name="user" type="user" placeholder="Usuário">
+            <h1>Login</h1>
         </div>
         <div>
-            <input name="password" type="password" placeholder="Senha">
+            <input name="user" type="user" placeholder="Usuário" required>
+        </div>
+        <div>
+            <input name="password" type="password" placeholder="Senha" required>
         </div>
         <div>
             <input type="submit" value="Entrar">
         </div>
     </form>
-    <?php
-        /* REAL LOCATION: login.php */
-        session_start();
-
-        if ($_SESSION['popup'] == 1) {
-
-            if (($_GET["l"] == 1)) {
-                echo "<div id='popup-nologin'>";
-                echo    "<p>Login incorreto.</p>";
-                echo "</div>";
-            }
-            $_SESSION['popup'] = 0;
-        }
-    ?>
 </section>
+<?php
+    require_once URL_ARQUIVOS. "/contents/popUps.php";
+?>

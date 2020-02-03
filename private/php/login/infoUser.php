@@ -8,11 +8,13 @@
 
         $instrumentos = array();
 
+
+        // pega todos os instrumentos do músico
         while($stmt->fetch()) {
             array_push($instrumentos, $instrumento);    
         }
 
         $_SESSION["instrumentos"] = $instrumentos;
-        print_r($_SESSION["instrumentos"]);
+        print_r($_SESSION["instrumentos"]); // questoes de debug
     }
 ?>

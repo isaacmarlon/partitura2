@@ -16,12 +16,13 @@
         $qntImpressoes = $_POST['qnt'];
 
         // mnt é da pasta compartilhada para a vm do server
-        $caminho = "/mnt/sf_Musicas/'".$_POST['partitura'] . "'";
-
+        $caminho = "'/mnt/sf_Musicas/".$_POST['partitura'] . "'";
+	
+	require_once "includes/Cups.php";
+	$printer = new Cups\Printer;
 
         // ATENÇÃO: ACESSO AO SHELL
-        $output = shell_exec('lpr -P Deskjet-F4100-series '. $caminho .' 2>&1 -#' . $qntImpressoes);
-        
+	$output = $printer->defaultSubmit($caminho, $qntImpressoes); 
 
         // questões de debug
 
@@ -34,8 +35,9 @@
             $output = shell_exec('lprm'); // limpa todas as impressoes 
             $_SESSION['popup'] = 1;
             header('Location: ../../partituras.php?l=1'); // avisa popup erro
-        } 
+        }
         else { // tudo ok com a impressora
+            echo "<pre>Output: $output</pre>";
             $_SESSION['popup'] = 1;
             header('Location: ../../partituras.php?l=2'); // avisa popup ok
         }

@@ -12,16 +12,21 @@
 
     // utilizado para acionar popups
     $_SESSION['popup'] = 1;
+
+    require_once "../includes/Cups.php";
     
+    $printer = new Cups\Printer;
+
     // ao receber do o comando
     switch($_POST['status']) {
         case 'Ativar':
-            $output = shell_exec('cupsaccept Deskjet-F4100-series 2>&1');
+            $output = $printer->cupsAcceptJobs("Deskjet");
             echo "<pre>$output</pre>";
             header("Location: ../../../".$_SESSION['pagAtual'].".php?i=1");
             break;
         case 'Desativar':
-            $output = shell_exec('cupsreject Deskjet-F4100-series 2>&1');
+            $output = $printer->cupsRejectJobs("Deskjet");
+	    echo "<pre>&output</pre>";
             header("Location: ../../../".$_SESSION['pagAtual'].".php?i=2");
             break;
     }

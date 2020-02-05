@@ -18,6 +18,8 @@
             $msc = $_SESSION['msc'];
 
             $usuarioInstrumentos = $_SESSION['instrumentos'];
+            
+            $maestro = (strcmp($usuarioInstrumentos[0], "Todos") == 0);
 
             // pega todos os naipes disponíveis para a msc
             $naipesResult = MusicasIO::getNaipes($msc);
@@ -27,10 +29,11 @@
             <?php
                 foreach($naipesResult as $naipe) {
                     foreach($usuarioInstrumentos as $instrumento) {
-                        if ((strpos($naipe[1], $instrumento) == 1) && (strcmp($instrumento, "Todos") == -1)) {
+                        if ((strpos($naipe[1], $instrumento) == 1) && (!$maestro)) {
                             echo "<option value='".$naipe[0]."'>".$naipe[1]."</option>";
-                        } 
-                        else if (strcmp($instrumento, "Todos") == 0) {
+                            break; // evita duplicações
+                        }
+                        else if ($maestro) {
                             echo "<option value='".$naipe[0]."'>".$naipe[1]."</option>";
                         } 
                     }

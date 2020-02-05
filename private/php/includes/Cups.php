@@ -27,7 +27,7 @@ class Printer
 	// needs www-data in group lpadmin
 	public function cupsAcceptJobs( $printerName )
 	{	
-		$command = "cupsaccept " . $printerName;
+		$command = 'cupsaccept ' . $printerName;
 		
 		$this->runCommand( $command );
 	}
@@ -36,57 +36,17 @@ class Printer
 	// needs www-data in group lpadmin
 	public function cupsRejectJobs( $printerName )
 	{
-		$command = "cupsreject " . $printerName;
+		$command = 'cupsreject ' . $printerName;
 		
 		$this->runCommand( $command );
 	}
 	
-	public function defaultSubmit( $filename, $qnt = false)
+	public function submit( $fileName, $printerName, $qnt)
 	{
-		$command = 'lpr ';
-		
-		$command .= $filename;
-		
-		if ( $qnt )
-		{
-			$command .= " -#" . $qnt;	
-		}
-		
-		$this->runCommand( $command );
+		$command = 'lpr -P '. $printerName . ' ' . $fileName . ' 2>&1 -#' . $qnt;
+	
+		return shell_exec($command);
 	}
-
-	public function submit( $filename, $printerName = false, $capabilities = array(), $qnt = false)
-	{
-		if( $printerName )
-		{
-			$command = 'lp -d ' . $printerName . ' ';
-		}
-		else
-		{
-			$command = 'lpr ';
-		}
-
-		if( $capabilities )
-		{
-			foreach( $capabilities  as $cap ) 
-			{
-				$command .= '-o ' . $cap . ' ';
-			}
-		}
-
-		if( $filename )
-		{
-			$command .= $filename;
-		}
-
-		if ( $qnt )
-		{
-			$command .= " -#" . $qnt;	
-		}
-		
-		$this->runCommand( $command );
-	}
-
 
 	protected function runCommand( $command )
 	{

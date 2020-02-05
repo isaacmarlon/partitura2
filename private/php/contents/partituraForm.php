@@ -28,10 +28,10 @@
                 foreach($naipesResult as $naipe) {
                     foreach($usuarioInstrumentos as $instrumento) {
                         if ((strpos($naipe[1], $instrumento) == 1) && (strcmp($instrumento, "Todos") == -1)) {
-                            echo "<option value='".$msc."/".$naipe[0]."'>".$naipe[1]."</option>";
+                            echo "<option value='".$naipe[0]."'>".$naipe[1]."</option>";
                         } 
                         else if (strcmp($instrumento, "Todos") == 0) {
-                            echo "<option value='".$msc."/".$naipe[0]."'>".$naipe[1]."</option>";
+                            echo "<option value='".$naipe[0]."'>".$naipe[1]."</option>";
                         } 
                     }
                 }

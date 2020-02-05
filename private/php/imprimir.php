@@ -41,7 +41,7 @@
         else { // tudo ok com a impressora
             echo "<pre>Output: $output</pre>";
             $_SESSION['popup'] = 1;
-            header('Location: ../../imprimir.php?l=2'); // avisa popup ok
+            header('Location: ../../index.php?l=2'); // avisa popup ok
         }
     }
     else {

@@ -23,7 +23,9 @@
             case 3:
                 echo "<div class='status0'><p>Login incorreto.</p></div>";
                 break;
-        }
+            case 4:
+		echo "<div class='status0'><p>Aconteceu algum problema, tente novamente.</p></div>";
+	}
         
         switch ($_GET["i"]) {
             case 1:

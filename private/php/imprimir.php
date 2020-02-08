@@ -12,9 +12,16 @@
         // resume session do client
         session_start();
 
+	$id = $_SESSION['id'];
         $msc = $_SESSION['msc'];
-        $qntImpressoes = $_POST['qnt'];
-
+	
+		
+	if (!empty($_POST['qnt'])) {
+	  $qntImpressoes = $_POST['qnt'];
+	} else {
+	  $qntImpressoes = 1;
+	}
+        
         // mnt é da pasta compartilhada para a vm do server
         //$caminho = "'/mnt/sf_Musicas/".$_POST['partitura'] . "'";
 	$caminho = "/mnt/sf_Musicas/'".$msc."'/'".$_POST['partitura']."'";	
@@ -41,6 +48,17 @@
         else { // tudo ok com a impressora
             echo "<pre>Output: $output</pre>";
             $_SESSION['popup'] = 1;
+
+	    require_once "conexao/conexao.php";
+		
+	    $sql = "CALL usuarioImprimiu(?,?,?);";
+		
+	    if ($stmt = $mysqli->prepare($sql)) {
+	    	$stmt->bind_param("isi",$id,$msc,$qntImpressoes);
+		$stmt->execute();
+		$stmt->close();
+	    }
+
             header('Location: ../../index.php?l=2'); // avisa popup ok
         }
     }

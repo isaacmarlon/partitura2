@@ -4,15 +4,26 @@
             <h1>Músicas</h1>
         </div>
         <div>
-            <?php 
+            <?php
+		session_start(); 
                 // REAL LOCATION: index.php
                 define("URL_ARQUIVOS","private/php");
                 require_once URL_ARQUIVOS. "/includes/musicasIO.php";
-            ?>
-            <select name='msc'>
+            	require_once URL_ARQUIVOS. "/includes/Impressoes.php";
+		
+		$jaImprimiu = Impressoes::getImpressoes($_SESSION["id"]);
+	
+	    ?>
+            <select id='selectMusic' name='msc'>
                 <?php
+			
+	            $usuarioNivel =  $_SESSION['nivel'];
                     foreach(MusicasIO::getMusicas() as $musica) {
-                        echo "<option>".$musica."</option>";
+                        if ((!in_array($musica, $jaImprimiu)) && ($nivel == 0)) {
+			    echo "<option>".$musica."</option>";
+			} else if ($nivel != 0) {
+			    echo "<option>".$musica."</option>";
+			}
                     }
                 ?>
             </select>
@@ -24,6 +35,11 @@
 </section>
 <script>
     function goPartituras() {
-        document.getElementById("mscForm").submit();
+	var mscSelect = document.getElementById("selectMusic").value;
+	if (mscSelect) {
+        	document.getElementById("mscForm").submit();
+	} else {
+	        window.location.href = "private/php/setMusic.php?e=1";
+	}
     }
 </script>

@@ -34,6 +34,9 @@
             case 2:
                 echo "<div class='status0'>Impressora desativada.</div>";
                 break;
+            case 3:
+                echo "<div class='status1'>Histórico de impressões limpo.</div>";
+                break;
         }
         
         $_SESSION['popup'] = 0;  // evita repetir o mesmo popup ao atualizar a página

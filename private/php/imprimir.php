@@ -32,7 +32,7 @@
 	$printer = new Cups\Printer;
 
         // ATENÇÃO: ACESSO AO SHELL
-	$output = $printer->submit($caminho, "Deskjet", $qntImpressoes); 
+	$output = $printer->submit($caminho, "L3110", $qntImpressoes); 
 	
         // questões de debug
 
@@ -49,18 +49,18 @@
             echo "<pre>Output: $output</pre>";
             $_SESSION['popup'] = 1;
 
-	    require_once "conexao/conexao.php";
-		
-	    $sql = "CALL usuarioImprimiu(?,?,?);";
-		
-	    if ($stmt = $mysqli->prepare($sql)) {
-	    	$stmt->bind_param("isi",$id,$msc,$qntImpressoes);
-		$stmt->execute();
-		$stmt->close();
-	    }
+            require_once "conexao/conexao.php";
+            
+            $sql = "CALL usuarioImprimiu(?,?,?);";
+            
+            if ($stmt = $mysqli->prepare($sql)) {
+                $stmt->bind_param("isi",$id,$msc,$qntImpressoes);
+            $stmt->execute();
+            $stmt->close();
+            }
 
-            header('Location: ../../index.php?l=2'); // avisa popup ok
-        }
+                header('Location: ../../index.php?l=2'); // avisa popup ok
+            }
     }
     else {
         echo "<b>Erro 0:</b> POST Method was not found.";

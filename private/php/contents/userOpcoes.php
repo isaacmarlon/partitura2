@@ -13,6 +13,7 @@
         <a href="private/php/login/logout.php">Sair</a>
     </div>
 </div>
+<div id="divFunctions" class="functionsOff">
 <?php
     
     // resume session do client
@@ -25,7 +26,7 @@
         $_SESSION['pagAtual'] = basename($_SERVER['PHP_SELF'], '.php');?>
 
             <!-- SÓ É EXIBIDO SE A CONDIÇÃO DO IF DO SCRIPT PHP ATUAL FOR TRUE -->
-            <form id='impressoraForm' class='impressoraForm0' action='private/php/dev/statusImpressora.php'method='POST'>
+            <form id='impressoraForm' action='private/php/dev/statusImpressora.php'method='POST'>
                 <div>
                     <h2>Impressora</h2>
                 </div>
@@ -36,4 +37,14 @@
                     <input name='status' type='submit' value='Desativar'>
                 </div>
             </form>
+            <!-- SÓ É EXIBIDO SE A CONDIÇÃO DO IF DO SCRIPT PHP ATUAL FOR TRUE -->
+            <form action='private/php/dev/renovarImpressoes.php' method='POST'>
+                <div>
+                    <h2>Impressões</h2>
+                </div>
+                <div>
+                    <input name='status' type='submit' value='Limpar'>
+                </div>
+            </form>
     <?php } // FECHA IF?>
+</div>

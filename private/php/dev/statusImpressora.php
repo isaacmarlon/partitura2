@@ -20,12 +20,12 @@
     // ao receber do o comando
     switch($_POST['status']) {
         case 'Ativar':
-            $output = $printer->cupsAcceptJobs("Deskjet");
+            $output = $printer->cupsAcceptJobs("L3110");
             echo "<pre>$output</pre>";
             header("Location: ../../../".$_SESSION['pagAtual'].".php?i=1");
             break;
         case 'Desativar':
-            $output = $printer->cupsRejectJobs("Deskjet");
+            $output = $printer->cupsRejectJobs("L3110");
 	    echo "<pre>&output</pre>";
             header("Location: ../../../".$_SESSION['pagAtual'].".php?i=2");
             break;

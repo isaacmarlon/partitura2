@@ -1,14 +1,14 @@
 function displayOpcoes() {
     var btnOpcoes = document.getElementById("btnOpcoes");
 
-    var formImpress = document.getElementById("impressoraForm");
+    var formImpress = document.getElementById("divFunctions");
     var classformImpress = formImpress.className;
 
-    if (classformImpress === "impressoraForm1") {
+    if (classformImpress === "functionsOn") {
         btnOpcoes.style.opacity = .5;
-        formImpress.className = "impressoraForm0";
+        formImpress.className = "functionsOff";
     } else {
-        formImpress.className = "impressoraForm1";
+        formImpress.className = "functionsOn";
         btnOpcoes.style.opacity = 1;
     }
 }

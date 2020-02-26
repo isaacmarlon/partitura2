@@ -1,6 +1,6 @@
 <div id='userInfo'>
 <?php
-    echo "<h2>Fulano</h2>";
+    echo "<h2>Demo</h2>";
     echo "<div id='userDetails'>";
         echo "
             <div class='adminTag'>

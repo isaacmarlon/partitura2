@@ -4,14 +4,10 @@
             <h1>Músicas</h1>
         </div>
         <div>
-            <?php
-                // REAL LOCATION: index.php
-                define("URL_ARQUIVOS","private/php");
-                require_once URL_ARQUIVOS. "/includes/musicasIO.php";
-	        ?>
             <select id='selectMusic' name='msc'>
                 <?php
-		            foreach(MusicasIO::getMusicas() as $musica) {
+                    $musicas = array("A Conquista do Paraíso", "O Colecionador");
+		            foreach($musicas as $musica) {
 			            echo "<option>".$musica."</option>";
 			        }
                 ?>

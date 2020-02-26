@@ -11,23 +11,18 @@
             <h1>Partituras</h1>
         </div>
         <?php
-            define("URL_ARQUIVOS","private/php");
-            require_once URL_ARQUIVOS. "/includes/musicasIO.php";
-
-            $msc = $_POST['msc'];
-
             $usuarioInstrumentos = array("Sax", "Saxofone");
 
             // pega todos os naipes disponíveis para a msc
-            $naipesResult = MusicasIO::getNaipes($msc);
+            $naipesResult = array(" Sax", " Saxofone", " Flauta", " Trombone");
         ?>
         <div>
             <select name="partitura">
             <?php
                 foreach($naipesResult as $naipe) {
                     foreach($usuarioInstrumentos as $instrumento) {
-                        if ((strpos($naipe[1], $instrumento) == 1)) {
-                            echo "<option value='".$naipe[0]."'>".$naipe[1]."</option>";
+                        if ((strpos($naipe, $instrumento) == 1)) {
+                            echo "<option>".$naipe."</option>";
                             break; // evita duplicações
                         }
                     }

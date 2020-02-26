@@ -10,7 +10,7 @@
     class MusicasIO {
 
         // mnt --> pasta compartilhada para a vm e mounted
-        const DIR_MSC = '/mnt/sf_Musicas'; // especifica diretório onde as músicas estão disponíveis
+        const DIR_MSC = '/var/www/partitura2/private/Musicas'; // especifica diretório onde as músicas estão disponíveis
         
         private static function isMusica($file) {
             // esse realmente deve ser o critério de diferenciação?

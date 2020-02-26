@@ -11,7 +11,7 @@
             <h1>Partituras</h1>
         </div>
         <?php
-            $usuarioInstrumentos = array("Sax", "Saxofone");
+            $usuarioInstrumentos = array("Sax", "Saxofone", "Flauta","Trombone");
 
             // pega todos os naipes disponíveis para a msc
             $naipesResult = array(" Sax", " Saxofone", " Flauta", " Trombone");
